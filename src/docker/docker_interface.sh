@@ -14,7 +14,7 @@ then
     exit 1;
 fi
 
-MOUNT_CMD="${MOUNT_CMD} -v /tmp/:/tmp/ -v ${TMP_DIR}:${TMP_DIR}  -v ${DDT_MAIN_DIR}:${DDT_MAIN_DIR}"
+MOUNT_CMD="${MOUNT_CMD} -v /tmp/:/tmp/ -v ${DDT_MAIN_DIR}:${DDT_MAIN_DIR}"
 echo "MOUNT CMD ===> $MOUNT_CMD"
 
 function compile
@@ -136,15 +136,6 @@ function run_algo_spark # Run the main pipeline
             p)
                 PARAM_PATH="-p ${OPTARG}"
                 ;;
-            s)
-              	SPARK_CONF="-s ${OPTARG,,}"
-		;;
-            m)
-                MASTER_IP="-m ${OPTARG}"
-                ;;
-	    c)
-                CORE_LOCAL_MACHINE="-c ${OPTARG}"
-                ;;
 	    b)
                 GLOBAL_BUILD_DIR="${OPTARG}"
                 ;;	    
@@ -164,7 +155,7 @@ function run_algo_spark # Run the main pipeline
 
     docker rm -f ${CONTAINER_NAME_SHELL} 2>/dev/null
     EXEC_FUN="cd ${ND_TRI_MAIN_DIR_DOCKER}"
-    EXEC_FUN="${EXEC_FUN} ; ${DDT_MAIN_DIR}/src/scala/run_algo_spark.sh  -i ${INPUT_DATA_DIR} -o ${OUTPUT_DATA_DIR}  ${FILE_SCRIPT}  ${PARAM_PATH}  ${SPARK_CONF}  ${MASTER_IP} ${CORE_LOCAL_MACHINE} -b ${GLOBAL_BUILD_DIR} ${ALGO_SEED} ${DEBUG_CMD}"
+    EXEC_FUN="${EXEC_FUN} ; ${FILE_SCRIPT} -i ${INPUT_DATA_DIR} -o ${OUTPUT_DATA_DIR}  ${PARAM_PATH} -b ${GLOBAL_BUILD_DIR} ${ALGO_SEED} ${DEBUG_CMD}"
     ## If inside the docker
     if [ -f /.dockerenv ] ;
     then

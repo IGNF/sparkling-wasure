@@ -3,7 +3,6 @@
 
 export DDT_MAIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}")/" && pwd )"
 BUILDS_DIR="${DDT_MAIN_DIR}/build/"
-mkdir -p  /tmp/spark-events
 
 # Function to display usage
 usage() {
@@ -23,7 +22,7 @@ function run_algo_docker
     echo ""
     echo "##  ------  ${FUNCNAME[1]}  ------"
     mkdir -p ${OUTPUT_DIR}
-    CMD="${DDT_MAIN_DIR}/src/docker/docker_interface.sh run_algo_spark  -i ${INPUT_DIR} -p ${PARAMS} -o ${OUTPUT_DIR} -f ${FILE_SCRIPT}  -s master -c ${NUM_PROCESS} -m ${MASTER_IP_SPARK} -b ${BUILDS_DIR} ${DEBUG_FLAG}"
+    CMD="${DDT_MAIN_DIR}/src/docker/docker_interface.sh run_algo_spark  -i ${INPUT_DIR} -p ${PARAMS} -o ${OUTPUT_DIR} -f ${FILE_SCRIPT} -b ${BUILDS_DIR} ${DEBUG_FLAG}"
     eval ${CMD}
     return 0
 }
@@ -45,14 +44,14 @@ echo -e "\n-[start preprocesssing]-"
 
 LAZ_INPUT_DIR=${INPUT_DIR}
 INPUT_BASE=$(basename "${INPUT_DIR}")
-FILE_SCRIPT="${DDT_MAIN_DIR}/services/wasure/workflow/workflow_preprocess.scala"
+FILE_SCRIPT="${DDT_MAIN_DIR}/services/wasure/workflow/preprocess.py"
 
 run_algo_docker
     
 echo -e "\n-[start reconstruction]-"
 INPUT_DIR=${OUTPUT_DIR}
 PARAMS="${OUTPUT_DIR}/wasure_metadata_3d_gen.xml"
-FILE_SCRIPT="${DDT_MAIN_DIR}/services/wasure/workflow/workflow_wasure.scala"
+FILE_SCRIPT="${DDT_MAIN_DIR}/services/wasure/workflow/wasure.py"
 run_algo_docker
 
 exit 0
