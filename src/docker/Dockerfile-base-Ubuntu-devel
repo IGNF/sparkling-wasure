@@ -70,30 +70,6 @@ RUN apt-get update && yes "8" | apt-get -y install libpng-dev liblapack-dev libb
 RUN apt-get update &&  apt-get -y install libxml2-dev
 
 
-# Télécharger et installer Miniconda
-RUN wget  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
-    /bin/bash /tmp/miniconda.sh -b -p /opt/conda && \
-    rm /tmp/miniconda.sh
-
-# Ajouter conda au PATH
-ENV PATH=/opt/conda/bin:$PATH
-
-# Copier les fichiers environment.yml dans le conteneur
-COPY services/mesh23dtile/environment.yml /tmp/environment_mesh23Dtile.yml
-COPY services/extern/ign-pdal-tools/environment.yml /tmp/environment_ign_pdal_tools.yml
-# ENV PYTHONPATH=/app/wasure/services/extern/ign-pdal-tools:$PYTHONPATH
-ENV PYTHONPATH=/app/wasure/services/extern/ign-pdal-tools
-# Créer le premier environnement Conda (mesh23Dtile)
-RUN conda env create -f /tmp/environment_mesh23Dtile.yml && conda clean -a
-
-# Créer le deuxième environnement Conda (ign-pdal-tools)
-RUN conda env create -f /tmp/environment_ign_pdal_tools.yml && conda clean -a
-
-# Faire de l'environnement Conda mesh23Dtile l'environnement par défaut
-RUN echo "source activate mesh23Dtile" > ~/.bashrc
-ENV CONDA_DEFAULT_ENV=mesh23Dtile
-ENV PATH=/opt/conda/envs/mesh23Dtile/bin:$PATH
-
 # COPY ./run_workflow_ed.sh /app/wasure/run_workflow_ed.sh
 
 COPY ./cmake_params.txt /app/wasure/cmake_params.txt
