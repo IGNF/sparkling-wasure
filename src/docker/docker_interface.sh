@@ -131,7 +131,7 @@ function run_algo_spark # Run the main pipeline
                 OUTPUT_DATA_DIR="${OPTARG}"
                 ;;
 	    f)
-                FILE_SCRIPT="-f ${OPTARG}"
+                FILE_SCRIPT="${OPTARG}"
                 ;;
             p)
                 PARAM_PATH="-p ${OPTARG}"
