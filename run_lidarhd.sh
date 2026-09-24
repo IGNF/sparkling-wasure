@@ -2,7 +2,7 @@
 source ./algo-env.sh
 
 usage() {
-  echo "Usage: $0 --input_dir <input_dir>  --output_dir <output_dir> [--params <xml_file_path>] [--colorize]"
+  echo "Usage: $0 --input_dir <input_dir>  --output_dir <output_dir> [--params <xml_file_path>]"
   exit 1
 }
 
@@ -11,7 +11,7 @@ while [[ "$#" -gt 0 ]]; do
       --input_dir) INPUT_DIR="$2"; shift ;;      
       --output_dir) OUTPUT_DIR="$2"; shift ;;
       --params) PARAMS="${2%/}"; shift ;;
-      --colorize) DO_COLORIZE="TRUE" ;;
+      --colorize) DO_COLORIZE="FALSE" ;;
     *) echo "Unknown parameter passed: $1"; usage ;;
   esac
   shift

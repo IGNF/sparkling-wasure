@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<env>
+  <datasets>
+    <austin>
+      <dim>3</dim>
+      <ndtree_depth>2</ndtree_depth>
+      <max_ppt>100000</max_ppt>
+      <StorageLevel>MEMORY_AND_DISK</StorageLevel>
+      <StorageLevelLoop>MEMORY_AND_DISK</StorageLevelLoop>
+      <nb_samples>20</nb_samples>
+      <rat_ray_sample>0</rat_ray_sample>
+    </austin>
+  </datasets>
+</env>

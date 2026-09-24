@@ -7,20 +7,20 @@ export DDT_MAIN_DIR_DOCKER=${DDT_MAIN_DIR} ## Used when called inside docker
 
 ## Algo params
 # Number of parallel process
-export NUM_PROCESS="16"
+export NUM_PROCESS="72"
 
 ## Apache/Spark
 # WARNING : temporary data from Apache Spark are stored into the SHARED_DIR directory when used locally. The default value is the current directory, you need a quick access and a huge amont of free space so change it if it's not the case.
-export SHARED_DIR="${DDT_MAIN_DIR_DOCKER}/shared_spark/"
+export SHARED_DIR="/tmp/"
 export TMP_DIR="${SHARED_DIR}/tmp/"
 export SPARK_TMP_DIR="${TMP_DIR}/spark/"
 export SPARK_HISTORY_DIR="${SPARK_TMP_DIR}"
 export APP_DIR="/app/wasure/"
 export CURRENT_PLATEFORM="local"
 export MASTER_IP_SPARK="localhost"
-export SPARK_EXECUTOR_MEMORY="64G"
-export SPARK_DRIVER_MEMORY="64G"
-export SPARK_WORKER_MEMORY="64G"
+export SPARK_EXECUTOR_MEMORY="900G"
+export SPARK_DRIVER_MEMORY="900G"
+export SPARK_WORKER_MEMORY="900G"
 
 
 if [[ ${DO_USE_LOCAL_BUILD} == "TRUE" ]]; then

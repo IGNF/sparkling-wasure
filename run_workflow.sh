@@ -3,7 +3,7 @@
 
 export DDT_MAIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}")/" && pwd )"
 BUILDS_DIR="${DDT_MAIN_DIR}/build/"
-DO_COLORIZE="TRUE"
+DO_COLORIZE="FALSE"
 DO_LOD="TRUE"
 mkdir -p  /tmp/spark-events
 
