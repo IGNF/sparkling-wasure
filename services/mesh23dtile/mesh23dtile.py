@@ -22,6 +22,9 @@ geom_error = [20,10,5,2,1,0]
 transformer = pyproj.Transformer.from_crs("epsg:2154", "epsg:4979")
 
 def is_inside_bbox(bbox,pts) :
+    #  "intersect" mode actually hardcoded in line 251 : "'--mode', default='intersect'"
+    #  If you change it to "strict", the mode will not be considered here because of ">=" and "<=". It prevents bug when 1 ply is treated but it does not apply the "strict" effect waited.
+    #  To fix: add " if "mode" == " so that the correct code is used depending on the mode
     return ((pts[0] >= bbox[0] and pts[0] <= bbox[1]) and
             (pts[1] >= bbox[2] and pts[1] <= bbox[3]) and
             (pts[2] >= bbox[4] and pts[2] <= bbox[5]))
