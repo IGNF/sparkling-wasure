@@ -2,7 +2,7 @@
 export NAME_IMG_BASE=ddt_img_base_devel
 export CONTAINER_NAME_SHELL="ddt_container_shell"
 export CONTAINER_NAME_COMPILE="ddt_container_compile"
-export DO_USE_LOCAL_BUILD="TRUE"
+export DO_USE_LOCAL_BUILD="FALSE"
 export DDT_MAIN_DIR_DOCKER=${DDT_MAIN_DIR} ## Used when called inside docker
 
 ## Algo params
@@ -11,7 +11,7 @@ export NUM_PROCESS="16"
 
 ## Apache/Spark
 # WARNING : temporary data from Apache Spark are stored into the SHARED_DIR directory when used locally. The default value is the current directory, you need a quick access and a huge amont of free space so change it if it's not the case.
-export SHARED_DIR="/mnt/data1/tmp/"
+export SHARED_DIR="${DDT_MAIN_DIR_DOCKER}/shared_spark/"
 export TMP_DIR="${SHARED_DIR}/tmp/"
 export SPARK_TMP_DIR="${TMP_DIR}/spark/"
 export SPARK_HISTORY_DIR="${SPARK_TMP_DIR}"
