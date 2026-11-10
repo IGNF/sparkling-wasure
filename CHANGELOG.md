@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
  
  
-## [Unreleased] - 2026-10-09
+## [2.0.0] - 2026-11-10
  
 sparkling-wasure with only the main algorithm, removing colorize and mesh23dtile of the workflow to put them into separate repositories.
  
