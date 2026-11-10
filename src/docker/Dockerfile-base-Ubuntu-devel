@@ -1,10 +1,10 @@
 FROM ubuntu:24.04
 
 
-MAINTAINER Laurent Caraffa "caraffa.laurent@gmail.com"
+LABEL maintainer="Laurent Caraffa <caraffa.laurent@gmail.com>"
 
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Generals
 RUN apt-get update &&  apt-get install -y cmake nano sudo gdb libboost-all-dev g++ wget  --assume-yes
@@ -51,7 +51,7 @@ RUN apt-get update && apt-get -y install libpq-dev --assume-yes
 
 
 RUN apt-get update &&  apt-get install -y  openjdk-8-jdk  --assume-yes
-ENV JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64/"
+ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"
 
 RUN cd /usr/local/bin/ && \
     wget https://archive.apache.org/dist/hadoop/core/hadoop-2.7.7/hadoop-2.7.7-src.tar.gz && \
